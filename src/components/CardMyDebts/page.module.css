@@ -1,0 +1,138 @@
+.card {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-xl);
+
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cardHeader {
+  background: var(--red-gradient);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--color-light-gray);
+
+  h1 {
+    font-size: var(--font-size-lg);
+    text-transform: uppercase;
+    color: var(--color-white);
+  }
+
+  span {
+    font-size: var(--font-size-sm);
+    color: var(--color-white);
+  }
+}
+
+.cardValue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  width: 100%;
+}
+
+.cardValue .values {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-md);
+  color: var(--color-dark-gray);
+  justify-content: space-between;
+  font-size: var(--font-size-lg);
+  height: 80px;
+}
+.textDefault {
+  color: var(--color-dark-gray);
+  text-decoration: line-through;
+}
+.textValue {
+  font-weight: bold;
+  font-size: var(--font-size-xl);
+  text-align: right;
+}
+.textAlert {
+  color: var(--color-dark-gray);
+  font-weight: bold;
+}
+.discount {
+  display: flex;
+  width: 100px;
+  height: 80px;
+  background-color: var(--color-green);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  span {
+    color: var(--color-white);
+    font-size: var(--font-size-md);
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.cardBody {
+  margin-bottom: var(--space-sm);
+  /* background-color: var(--color-light-gray); */
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dateExpires {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.msgExpires {
+  font-size: var(--font-size-xs);
+  color: var(--color-medium-gray);
+  /* text-align: center; */
+  margin-top: var(--space-sm);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.cardButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-md);
+  gap: var(--space-xs);
+}
+
+.cardButtons .buttonPay {
+  flex: 1;
+  width: 100%;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  color: var(--color-white);
+  background-color: var(--color-red);
+  border: none;
+  cursor: pointer;
+}
+
+.cardButtons .buttonSimulate {
+  flex: 1;
+  width: 100%;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  color: var(--color-red);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-red);
+  cursor: pointer;
+}

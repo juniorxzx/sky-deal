@@ -1,0 +1,26 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background-color: var(--color-light-gray);
+  padding-top: 90px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: var(--font-size-xl);
+    color: var(--color-dark-gray);
+    margin-bottom: var(--space-md);
+  }
+  p {
+    font-size: var(--font-size-md);
+    color: var(--color-medium-gray);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+}

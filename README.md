@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📦 Preparando o build para produção
+Este projeto utiliza Next.js, configurado para exportar o site como arquivos estáticos (HTML, CSS e JS). Isso permite hospedar em qualquer servidor sem necessidade de Node.js rodando no backend.
 
-## Getting Started
+## ✅ Passos para gerar os arquivos de build
+Instale as dependências
 
-First, run the development server:
+Se ainda não tiver feito isso, rode:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configure o arquivo next.config.js para exportação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Já deve estar configurado assim (verifique ou adicione):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  // basePath: '/nome-do-repositorio' (caso vá hospedar no GitHub Pages)
+};
 
-## Learn More
+module.exports = nextConfig;
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Rode o build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Execute o comando abaixo para gerar a versão de produção estática:
 
-## Deploy on Vercel
+```bash
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm run build
+# ou
+yarn build
+# ou
+pnpm build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+
+## 🧪 Testar localmente o build
+
+Após o comando de build, você pode testar localmente com:
+
+```bash
+
+npx serve out
+
+```
+
+Isso simula como o projeto vai se comportar no ambiente de produção.
