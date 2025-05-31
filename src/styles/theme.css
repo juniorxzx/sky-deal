@@ -1,6 +1,8 @@
 :root {
   /* Main Colors */
-  --color-red: #e30613;
+  --color-red: #e30609;
+  --color-yellow: #ffd800;
+  --color-gray: #b2b2b2;
   --color-dark-gray: #333333;
   --color-medium-gray: #666666;
   --color-light-gray: #f7f7f7;
@@ -16,10 +18,11 @@
   --color-light-beige: #fff8e1;
 
   /* Typography */
-  --font-base: "Roboto", Arial, sans-serif;
-  --font-heading: "Roboto Condensed", Arial Narrow, sans-serif;
+  --font-base: var(--font-pfdin-text-pro), Arial, sans-serif;
+  --font-heading: var(--font-pfdin-text-pro), Arial, sans-serif;
 
   /* Font Sizes */
+  --font-size-xxxl: 32px;
   --font-size-xxl: 28px;
   --font-size-xl: 24px;
   --font-size-lg: 18px;
@@ -35,7 +38,10 @@
 
   /* Shadows */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shado-soft-inverted: 0 -2px 8px rgba(255, 255, 255, 0.05);
 
+  --shadow-hard: 0 5px 16px 0 rgba(0, 0, 0, 0.1);
+  --shadow-hard-inverted: 0 -5px 16px 0 rgba(255, 255, 255, 0.1);
   /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
@@ -48,6 +54,6 @@
 
   /* Breakpoints */
   --breakpoint-mobile: 576px;
-  --breakpoint-tablet: 991px;
-  --breakpoint-desktop: 992px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
 }

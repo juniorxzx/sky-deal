@@ -1,33 +1,54 @@
+'use client'
+
 import React from 'react'
 import S from './page.module.css'
-import { MdOutlineVerified } from "react-icons/md";
+import Button from '../Button';
 
-const CardMyDebts = () => {
+type DebtData = {
+    id: string;
+    title: string;
+    originalValue: string;
+    discountedValue: string;
+    dueDate: string;
+    discountPercentage: string;
+}
+
+interface CardMyDebtsProps {
+    setOpen: (open: boolean) => void;
+    debt?: DebtData
+}
+
+const CardMyDebts = ({ setOpen, debt }: CardMyDebtsProps) => {
+
+
+    const handlePay = () => {
+        setOpen(true);
+    }
     return (
         <div className={S.card}>
             <div className={S.cardHeader}>
-                <h1>Tv por assinatura</h1>
-                <span>12309123912</span>
+                <h1>{debt?.title}</h1>
+                <span>{debt?.id}</span>
             </div>
             <div className={S.cardValue}>
                 <div className={S.values}>
                     <span >
-                        De <span className={S.textDefault}>R$ 2.679,63</span>
+                        De <span className={S.textDefault}>R$ {debt?.originalValue}</span>
                     </span>
                     <span className={S.textValue}>
-                        Por <span className={S.textAlert}>R$ 1.339.81</span>
+                        Por <span className={S.textAlert}>R$ {debt?.discountedValue}</span>
                     </span>
                 </div>
 
                 <div className={S.discount}>
-                    <span>Desconto de até 50%</span>
+                    <span>Desconto de até {debt?.discountPercentage}</span>
                 </div>
             </div>
 
             <div className={S.cardBody}>
                 <div className={S.dateExpires}>
                     <span>Vencimento</span>
-                    <span>10/06/2025</span>
+                    <span>{debt?.dueDate}</span>
                 </div>
                 <div className={S.msgExpires}>
                     <span>Você ainda poderá trocar o vencimento</span>
@@ -36,12 +57,8 @@ const CardMyDebts = () => {
             </div>
 
             <div className={S.cardButtons}>
-                <button className={S.buttonPay}>
-                    Pagar à vista
-                </button>
-                <button className={S.buttonSimulate}>
-                    Simular parcelamento
-                </button>
+                <Button label='Pagar à vista' onClick={handlePay} />
+                <Button label='Simular parcelamento' type='secondary' />
             </div>
         </div>
     )

@@ -113,26 +113,4 @@
   gap: var(--space-xs);
 }
 
-.cardButtons .buttonPay {
-  flex: 1;
-  width: 100%;
-  padding: var(--space-sm);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-md);
-  color: var(--color-white);
-  background-color: var(--color-red);
-  border: none;
-  cursor: pointer;
-}
 
-.cardButtons .buttonSimulate {
-  flex: 1;
-  width: 100%;
-  padding: var(--space-sm);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-md);
-  color: var(--color-red);
-  background-color: var(--color-white);
-  border: 1px solid var(--color-red);
-  cursor: pointer;
-}

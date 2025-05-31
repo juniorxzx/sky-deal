@@ -1,0 +1,187 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  background: var(--color-light-gray);
+  color: var(--color-dark-gray);
+  position: relative;
+  /* overflow: hidden; */
+  height: 100%;
+  padding-top: 85px;
+  display: flex;
+  flex-direction: column;
+  /* padding-inline: var(--space-lg); */
+  width: 100%;
+}
+
+.hero .container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.heroContent {
+  flex: 1;
+  width: 100%;
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.heroTitle h1 {
+  font-size: var(--font-size-xxxl);
+  line-height: 140%;
+  color: var(--accent-color);
+}
+
+.heroTitle h1 > span {
+  color: var(--color-red);
+}
+
+.heroTitle p {
+  font-size: var(--font-size-md);
+  color: var(--color-medium-gray);
+}
+
+.heroForm {
+  background-color: var(--color-white);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.heroBadges {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.badge i {
+  font-size: 1.2rem;
+}
+
+.heroImage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  max-width: 400px;
+}
+
+.floatingCard {
+  position: absolute;
+  background-color: white;
+  color: var(--accent-color);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-soft);
+  font-weight: 600;
+  animation: float 3s ease-in-out infinite;
+}
+
+.floatingCard i {
+  font-size: 1.2rem;
+}
+
+.card1 {
+  top: 20%;
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+.card2 {
+  bottom: 30%;
+  right: 0;
+  animation-delay: 1s;
+}
+.card3 {
+  bottom: 40%;
+  left: 0;
+  animation-delay: 1s;
+}
+
+@media (min-width: 768px) {
+  .hero .container {
+    flex-direction: row;
+    align-items: normal;
+    height: 100vh;
+    padding-top: 3rem;
+  }
+
+  .heroTitle h1 {
+    font-size: 56px;
+    line-height: 1.1;
+  }
+  .heroTitle p {
+    font-size: 18px;
+  }
+  .heroForm {
+    width: 100%;
+  }
+  .heroForm .formGroup {
+    width: 100%;
+  }
+  .herp .heroImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

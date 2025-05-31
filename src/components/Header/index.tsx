@@ -2,50 +2,37 @@
 
 import React from 'react'
 import S from './header.module.css'
-import { FaRegUserCircle } from "react-icons/fa";
-import { usePathname } from 'next/navigation';
+import Logo from '@/assets/images/logo.svg'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import { motion } from 'framer-motion'
 const Header = () => {
-    const [auth, setAuth] = React.useState(true);
-    const path = usePathname()
-
-    console.log('path', path)
     return (
-        <div className={S.header}>
-            <div className={S.top}>
-                <div className={S.logo}>
-                    <span>SKY</span>
-                </div>
-                <div className={S.user}>
+        <motion.div className={S.header} initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}>
 
-                    <FaRegUserCircle />
+            <div className={S.container}>
 
 
-                    <span>Olá, Allan</span>
+                <motion.div className={S.logo}>
+                    <Image src={Logo} alt='Logo SKY' width={100} height={100} />
+                </motion.div>
 
-                </div>
+                <motion.nav className={S.menu}>
+                    <motion.div className={S.menuItem}>
+                        <Link href='#como-funciona'>Como funciona</Link>
+                    </motion.div>
+                    <motion.div className={S.menuItem}>
+                        <Link href='#como-funciona'>Sobre Nós</Link>
+                    </motion.div>
+                    <motion.div className={S.menuItem}>
+                        <Link href='#como-funciona'>Contato</Link>
+                    </motion.div>
+                </motion.nav>
             </div>
-            {auth && (
-
-                <div className={S.bottom}>
-                    <div className={S.menu}>
-                        <div className={`${S.menuItem} ${path === '/minhas-dividas' ? S.active : ''}`} >
-                            <span>Minhas Dívidas</span>
-                            {path === '/minhas-dividas' && (
-                                <div className={S.icon} />
-                            )}
-                        </div>
-
-                        <div className={`${S.menuItem} ${path === '/' ? S.active : ''}`}>
-                            <span>Meus Contatos</span>
-                        </div>
-                        <div className={`${S.menuItem} ${path === '/' ? S.active : ''}`}>
-                            <span>Dúvidas</span>
-                        </div>
-                    </div>
-                </div>
-
-            )}
-        </div>
+        </motion.div>
     )
 }
 
