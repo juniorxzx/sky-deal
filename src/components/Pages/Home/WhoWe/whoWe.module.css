@@ -56,57 +56,19 @@
   color: var(--color-red);
 }
 
-.howWork {
-  padding: 5rem 0;
-  background-color: var(--color-white);
-  border-top-left-radius: var(--radius-xl);
-  border-top-right-radius: var(--radius-xl);
-  box-shadow: var(--shadow-soft-inverted);
-}
-
-.steps {
+.sectionContent {
+  padding: 1rem 0;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
   gap: 1rem;
 }
 
-.step {
-  flex: 1;
-  min-width: 200px;
-  height: 200px;
-  text-align: center;
-  padding: 1rem;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-hard);
-  cursor: pointer;
-}
-
-.stepHeader {
-  height: 60px;
-  width: 60px;
-  background-color: var(--color-red);
-  border-radius: var(--radius-lg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-
-.sectionHeader > .icon {
-  color: var(--color-light-gray);
-}
-.step h3 {
-  color: var(--color-dark-gray);
-  font-weight: 700;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  padding-top: 0.5rem;
-}
-.step p {
-  color: var(--text-light);
-  text-align: left;
+.sectionContent p {
+  font-size: var(--font-size-md);
+  color: var(--color-medium-gray);
+  max-width: 800px;
 }
 
 @media (min-width: 768px) {

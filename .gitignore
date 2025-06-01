@@ -19,7 +19,8 @@
 
 # production
 /build
-
+/out
+/gh-page
 # misc
 .DS_Store
 *.pem

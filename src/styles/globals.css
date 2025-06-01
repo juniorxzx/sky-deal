@@ -26,14 +26,6 @@ h6 {
   margin: 0;
 }
 
-h1 {
-  font-size: var(--font-size-xl);
-}
-
-h2 {
-  font-size: var(--font-size-lg);
-}
-
 /* Links */
 a {
   color: inherit;
@@ -44,15 +36,4 @@ a:hover {
   text-decoration: none;
 }
 
-/* Botões */
-button {
-  cursor: pointer;
-}
 
-/* Inputs, Textareas, Selects */
-input,
-textarea,
-select {
-  font-family: var(--font-base);
-  font-size: var(--font-size-md);
-}

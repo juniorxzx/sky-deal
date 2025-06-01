@@ -37,7 +37,9 @@ const HeroSection = () => {
                         </div>
                         <small>Consulta gratuita e sem compromisso</small>
                     </motion.div>
-                    <div className={S.heroBadges}>
+                    <motion.div className={S.heroBadges} initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}>
                         <div className={S.badge}>
                             <i className="fas fa-shield-alt"></i>
                             <span>Dados protegidos</span>
@@ -50,25 +52,25 @@ const HeroSection = () => {
                             <i className="fas fa-bolt"></i>
                             <span>Processo rápido</span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className={S.heroImage}>
                     <motion.div className={`${S.floatingCard} ${S.card1}`} initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}>
-                        <i className="fas fa-percentage"></i>
+
                         <span>Até 50% de desconto</span>
                     </motion.div>
                     <motion.div className={`${S.floatingCard} ${S.card2}`} initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}>
-                        <i className="fas fa-calendar-check"></i>
+
                         <span>Limpe seu nome</span>
                     </motion.div>
                     <motion.div className={`${S.floatingCard} ${S.card3}`} initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}>
-                        <i className="fas fa-calendar-check"></i>
+
                         <span>Oportunidade</span>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, x: -50 }}

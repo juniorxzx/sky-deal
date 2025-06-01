@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import '@/styles/globals.css';
 import '@/styles/theme.css';
 import Header from "@/components/Header";
 import { pfdinTextPro } from "@/assets/fonts";
+import Footer from "@/components/Footer";
 
 
 
@@ -22,6 +22,7 @@ export default function RootLayout({
       <body className={`${pfdinTextPro.variable}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import CardMyDebts from '@/components/CardMyDebts'
 import S from './page.module.css'
-import RefPage from '@/components/RefPage'
 import ModalDateSelect from '@/components/ModalDateSelect'
 import DebtCardSkeleton from '@/components/Skeleton/DebtCardSkeleton'
 

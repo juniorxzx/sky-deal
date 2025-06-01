@@ -38,10 +38,10 @@
 
   /* Shadows */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shado-soft-inverted: 0 -2px 8px rgba(255, 255, 255, 0.05);
+  --shado-soft-inverted: 0 -2px 8px rgba(255, 255, 255, 0.0);
 
-  --shadow-hard: 0 5px 16px 0 rgba(0, 0, 0, 0.1);
-  --shadow-hard-inverted: 0 -5px 16px 0 rgba(255, 255, 255, 0.1);
+  --shadow-hard: 0 5px 16px 0 rgba(0, 0, 0, 0.2);
+  --shadow-hard-inverted: 0 -5px 16px 0 rgba(0, 0, 0, 0.2);
   /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;

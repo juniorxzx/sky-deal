@@ -37,17 +37,21 @@
 .heroTitle {
   display: flex;
   flex-direction: column;
+  text-align: center;
   margin-bottom: 2rem;
 }
 
 .heroTitle h1 {
-  font-size: var(--font-size-xxxl);
-  line-height: 140%;
+  font-size: 42px;
   color: var(--accent-color);
+  line-height: 1.2;
+  font-weight: 800;
 }
 
 .heroTitle h1 > span {
   color: var(--color-red);
+  inline-size: auto;
+  line-height: 1.2;
 }
 
 .heroTitle p {
@@ -105,7 +109,7 @@
 
 .floatingCard {
   position: absolute;
-  background-color: white;
+  background-color: var(--color-white);
   color: var(--accent-color);
   padding: 0.8rem 1rem;
   border-radius: var(--radius-xl);
@@ -113,16 +117,16 @@
   align-items: center;
   gap: 0.5rem;
   box-shadow: var(--shadow-soft);
-  font-weight: 600;
+  height: 40px;
   animation: float 3s ease-in-out infinite;
 }
-
-.floatingCard i {
-  font-size: 1.2rem;
+.floatingCard span {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
 .card1 {
-  top: 20%;
+  bottom: 0%;
   left: 0;
   animation-delay: 0.5s;
 }
@@ -146,6 +150,10 @@
     padding-top: 3rem;
   }
 
+  .heroTitle {
+    text-align: start;
+  }
+
   .heroTitle h1 {
     font-size: 56px;
     line-height: 1.1;
@@ -166,6 +174,22 @@
     justify-content: flex-end;
   }
 
+  .card1 {
+    top: 20%;
+    left: 0;
+    animation-delay: 0.5s;
+  }
+
+  .card2 {
+    bottom: 30%;
+    right: 0;
+    animation-delay: 1s;
+  }
+  .card3 {
+    bottom: 40%;
+    left: 0;
+    animation-delay: 1s;
+  }
   .img {
     max-width: 100%;
     max-height: 100%;

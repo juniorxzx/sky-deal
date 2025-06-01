@@ -3,10 +3,10 @@ import S from './dateSelect.module.css'
 
 interface DateSelectProps {
     date?: Date;
-    setSelectedDate?: (date: Date | null) => void;
+
 }
 
-const DateSelect = ({ date, setSelectedDate }: DateSelectProps) => {
+const DateSelect = ({ date}: DateSelectProps) => {
     return (
         <div className={S.container}>
             <div className={S.dateSelect}>

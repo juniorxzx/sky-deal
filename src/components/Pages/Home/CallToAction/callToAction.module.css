@@ -1,0 +1,62 @@
+.cta {
+  padding: 5rem 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-red) 100%,
+    var(--color-light-gray) 0%
+  );
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  box-shadow: var(--shadow-hard-inverted);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ctaContent h2 {
+  margin-bottom: 1rem;
+  color: var(--color-light-gray);
+  font-size: var(--font-size-xxl);
+}
+
+.ctaContent p {
+  margin-bottom: 2rem;
+  font-size: var(--font-size-lg);
+  color: var(--color-light-gray);
+  opacity: 0.9;
+}
+
+.ctaForm {
+  background-color: var(--color-white);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+
+.ctaForm small {
+  color: var(--color-medium-gray);
+}

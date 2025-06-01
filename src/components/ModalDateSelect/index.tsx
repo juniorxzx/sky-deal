@@ -3,12 +3,9 @@ import S from './modalDateSelect.module.css'
 import { IoClose } from "react-icons/io5";
 import DateSelect from '../DateSelect';
 
-interface ModalDateSelectProps {
-
-}
 
 const ModalDateSelect = () => {
-    const [open, setOpen] = React.useState(false);
+    // eslint-disable-next-line
     const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
     const mockDate = new Date();
@@ -22,7 +19,7 @@ const ModalDateSelect = () => {
                 </div>
                 <div className={S.modalBody}>
                     <div className={S.dateSelect}>
-                        <DateSelect date={selectedDate ?? mockDate} setSelectedDate={setSelectedDate} />
+                        <DateSelect date={selectedDate ?? mockDate} />
                     </div>
                     <div className={S.warnings}>
                         <span>Você pode selecionar uma outra data para o vencimento</span>

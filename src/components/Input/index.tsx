@@ -15,6 +15,7 @@ interface InputProps {
 }
 
 const Input = ({ id, label, placeholder, type, value, onChange }: InputProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [focused, setFocused] = useState(false)
 
     const formatCpf = (value: string) => {
