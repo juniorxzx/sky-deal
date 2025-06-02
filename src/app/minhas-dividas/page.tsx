@@ -18,7 +18,6 @@ type DebtData = {
 
 const MinhasDividas = () => {
     const [open, setOpen] = React.useState(false);
-    console.log('open', open)
     const [debts, setDebts] = useState<DebtData[] | null>(null)
 
     useEffect(() => {
@@ -57,7 +56,7 @@ const MinhasDividas = () => {
             )}
 
             {open && (
-                <ModalDateSelect />
+                <ModalDateSelect setOpen={setOpen} />
             )}
         </div >
 

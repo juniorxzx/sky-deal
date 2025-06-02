@@ -1,33 +1,67 @@
 import React from 'react'
 import S from './modalDateSelect.module.css'
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoInformation, IoInformationCircleOutline } from "react-icons/io5";
 import DateSelect from '../DateSelect';
+import Button from '../Button';
+
+import { AnimatePresence, motion } from 'framer-motion';
+
+interface ModalDateSelectProps {
+    setOpen: (open: boolean) => void;
+}
 
 
-const ModalDateSelect = () => {
+const ModalDateSelect = ({ setOpen }: ModalDateSelectProps) => {
     // eslint-disable-next-line
-    const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
+    const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
 
-    const mockDate = new Date();
 
     return (
         <div className={S.container}>
-            <div className={S.modalContent}>
-                <div className={S.modalHeader}>
-                    <h2>Data de vencimento</h2>
-                    <IoClose size={24} />
-                </div>
-                <div className={S.modalBody}>
-                    <div className={S.dateSelect}>
-                        <DateSelect date={selectedDate ?? mockDate} />
-                    </div>
-                    <div className={S.warnings}>
-                        <span>Você pode selecionar uma outra data para o vencimento</span>
-                        <span>O desconto concedido e o valor a pagar poderá mudar conforme a data de vencimento e a forma de pagamento</span>
-                    </div>
-                </div>
+            <AnimatePresence>
 
-            </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -50 }}
+                    transition={{ duration: 0.3 }}
+                    className={S.modalContent}>
+                    <div className={S.modalHeader}>
+                        <h2>Data de vencimento</h2>
+                        <IoClose size={24} onClick={() => setOpen(false)} />
+                    </div>
+                    <div className={S.modalBody}>
+                        <div className={S.dateSelect}>
+                            <DateSelect
+                                initialDate={new Date()}
+                                numberOfDays={10}
+                                selectedDate={selectedDate}
+                                onSelectDate={setSelectedDate}
+                            />
+                        </div>
+
+                        <div className={S.warnings}>
+                            <div className={S.warning}>
+                                <IoInformationCircleOutline size={20} />
+                                <span>Você ainda poderá trocar o vencimento</span>
+                            </div>
+                       
+                        </div>
+                        {selectedDate && (
+                            <Button
+                                label={`Pagar à vista`}
+                                onClick={() => {
+                                    console.log('Pagar à vista', selectedDate);
+                                    setOpen(false);
+                                }}
+                            />
+                        )}
+
+                    </div>
+
+                </motion.div>
+            </AnimatePresence>
         </div>
     )
 }

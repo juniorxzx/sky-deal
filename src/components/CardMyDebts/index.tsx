@@ -58,7 +58,7 @@ const CardMyDebts = ({ setOpen, debt }: CardMyDebtsProps) => {
 
             <div className={S.cardButtons}>
                 <Button label='Pagar à vista' onClick={handlePay} />
-                <Button label='Simular parcelamento' type='secondary' />
+                {/* <Button label='Simular parcelamento' type='secondary' /> */}
             </div>
         </div>
     )

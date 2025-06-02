@@ -4,6 +4,7 @@ import '@/styles/theme.css';
 import Header from "@/components/Header";
 import { pfdinTextPro } from "@/assets/fonts";
 import Footer from "@/components/Footer";
+import { AppProvider } from "@/context/AppContext";
 
 
 
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${pfdinTextPro.variable}`}>
-        <Header />
-        {children}
-        <Footer />
+        <AppProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

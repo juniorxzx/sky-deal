@@ -113,4 +113,9 @@
   gap: var(--space-xs);
 }
 
-
+@media (min-width: 768px) {
+  .card {
+    max-width: 500px;
+  
+  }
+}
