@@ -13,7 +13,7 @@ interface ButtonProps {
 
 const Button = ({ onClick, className, type = 'primary', disabled, label }: ButtonProps) => {
     return (
-        <div className={`${S.container} ${S[type]} ${className}`} onClick={onClick} onKeyDown={(e) => e.key === 'Enter' && onClick?.()} aria-disabled={disabled}>
+        <div className={`${S.container} ${S[type]} ${className} ${disabled ? S.disabled : ''}`} onClick={onClick} onKeyDown={(e) => e.key === 'Enter' && onClick?.()} aria-disabled={disabled}>
             {label}
         </div>
     )

@@ -68,6 +68,4 @@ export const pfdinTextPro = localFont({
     },
   ],
   variable: "--font-pfdin-text-pro",
-  display: "swap",
-  fallback: ["Arial", "sans-serif"],
 });

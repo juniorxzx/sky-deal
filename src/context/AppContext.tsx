@@ -1,19 +1,43 @@
 'use client'
 
+import { da } from 'date-fns/locale'
 import { createContext, useContext, useState, ReactNode } from 'react'
+
+type PaymentMethod = 'pix' | 'boleto' | null
+
 
 type AppContextType = {
     user: string | null
     setUser: (user: string | null) => void
+    selectedDate: Date | null
+    setSelectedDate: (date: Date | null) => void
+    userCpf: string | null
+    setUserCpf: (cpf: string | null) => void
+    paymentMethod: PaymentMethod
+    setPaymentMethod: (method: PaymentMethod) => void
 }
-
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<string | null>(null)
+    const [selectedDate, setSelectedDate] = useState<Date | null>(Date.now() ? new Date() : null)
+    const [userCpf, setUserCpf] = useState<string | null>(null)
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('pix')
+
+
+    const contextValue = {
+        user,
+        setUser,
+        selectedDate,
+        setSelectedDate,
+        userCpf,
+        setUserCpf,
+        paymentMethod,
+        setPaymentMethod
+    }
 
     return (
-        <AppContext.Provider value={{ user, setUser }}>
+        <AppContext.Provider value={contextValue}>
             {children}
         </AppContext.Provider>
     )
@@ -21,6 +45,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAppContext = () => {
     const context = useContext(AppContext)
-    if (!context) throw new Error('useAppContext must be used inside AppProvider')
+    if (!context) throw new Error('useAppContext deve ser usado dentro de um AppProvider')
     return context
 }

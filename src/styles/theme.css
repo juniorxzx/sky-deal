@@ -18,8 +18,8 @@
   --color-light-beige: #fff8e1;
 
   /* Typography */
-  --font-base: var(--font-pfdin-text-pro), Arial, sans-serif;
-  --font-heading: var(--font-pfdin-text-pro), Arial, sans-serif;
+  --font-base: var(--font-pfdin-text-pro), sans-serif;
+  --font-heading: var(--font-pfdin-text-pro), sans-serif;
 
   /* Font Sizes */
   --font-size-xxxl: 32px;

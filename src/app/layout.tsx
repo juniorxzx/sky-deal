@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${pfdinTextPro.variable}`}>
+    <html lang="pt-BR" className={pfdinTextPro.variable}>
+      <body >
         <AppProvider>
           <Header />
           {children}

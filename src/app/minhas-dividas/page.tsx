@@ -41,7 +41,7 @@ const MinhasDividas = () => {
     }, [])
 
     return (
-        <div className={S.container}>
+        <main className={S.container}>
             <div className={S.header}>
                 <h1>Minhas Dívidas</h1>
                 <p>Veja aqui as dívidas que você tem com a empresa e aproveite os descontos para quitar.</p>
@@ -58,7 +58,7 @@ const MinhasDividas = () => {
             {open && (
                 <ModalDateSelect setOpen={setOpen} />
             )}
-        </div >
+        </main >
 
     )
 }

@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-base);
 }
 
 /* Variáveis de fonte e cor (você deve garantir que elas existam em theme.css) */
@@ -35,5 +36,3 @@ a {
 a:hover {
   text-decoration: none;
 }
-
-

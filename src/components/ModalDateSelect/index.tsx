@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import S from './modalDateSelect.module.css'
 import { IoClose, IoInformation, IoInformationCircleOutline } from "react-icons/io5";
 import DateSelect from '../DateSelect';
 import Button from '../Button';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { useAppContext } from '@/context/AppContext';
+import { useRouter } from 'next/navigation';
+
 
 interface ModalDateSelectProps {
     setOpen: (open: boolean) => void;
@@ -12,15 +15,20 @@ interface ModalDateSelectProps {
 
 
 const ModalDateSelect = ({ setOpen }: ModalDateSelectProps) => {
-    // eslint-disable-next-line
-    const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+    const { selectedDate, setSelectedDate } = useAppContext()
 
+    const router = useRouter();
+
+    const onConfirm = () => {
+        if (selectedDate) {
+            setOpen(false);
+            router.push('/confirmacao');
+        }
+    }
 
     return (
         <div className={S.container}>
             <AnimatePresence>
-
-
                 <motion.div
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -46,20 +54,16 @@ const ModalDateSelect = ({ setOpen }: ModalDateSelectProps) => {
                                 <IoInformationCircleOutline size={20} />
                                 <span>Você ainda poderá trocar o vencimento</span>
                             </div>
-                       
+
                         </div>
                         {selectedDate && (
                             <Button
                                 label={`Pagar à vista`}
-                                onClick={() => {
-                                    console.log('Pagar à vista', selectedDate);
-                                    setOpen(false);
-                                }}
+                                onClick={onConfirm}
                             />
                         )}
 
                     </div>
-
                 </motion.div>
             </AnimatePresence>
         </div>
