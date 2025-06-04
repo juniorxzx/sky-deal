@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react'
-import Button from '../Button'
 import S from './input.module.css'
 import { motion } from 'framer-motion'
 interface InputProps {
@@ -52,7 +51,7 @@ const Input = ({ id, label, placeholder, type, value, onChange }: InputProps) =>
                     type={type} id={id} placeholder={placeholder} value={value}
                     onChange={handleChange}
                 />
-                <Button type='primary' label='Consultar' className={S.button} />
+    
             </div>
         </div>
     )

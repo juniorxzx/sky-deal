@@ -6,10 +6,24 @@ import { motion } from 'framer-motion'
 import HeroImage from '@/assets/images/hero-bg.png'
 import Image from 'next/image'
 import Input from '@/components/Input'
+import Button from '@/components/Button'
+import { useRouter } from 'next/navigation'
 
 const HeroSection = () => {
 
     const [cpf, setCpf] = useState('')
+
+    const router = useRouter()
+    const handleClick = () => {
+        if (cpf.length < 11) {
+            alert('Por favor, insira um CPF válido.')
+            return
+        }
+        router.push(`/minhas-dividas`)
+        setCpf('')
+    }
+
+
     return (
         <section className={S.hero}>
             <motion.div
@@ -33,7 +47,9 @@ const HeroSection = () => {
                         transition={{ duration: 0.5, delay: 0.3 }}>
                         <div className={S.formGroup}>
                             <Input label='Digite seu CPF para consultar' mask='cpf' value={cpf} onChange={setCpf} />
-
+                            <div className={S.formButton}>
+                                <Button type='primary' label='Consultar' className={S.button} size='large' onClick={handleClick} />
+                            </div>
                         </div>
                         <small>Consulta gratuita e sem compromisso</small>
                     </motion.div>

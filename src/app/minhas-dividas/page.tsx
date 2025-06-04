@@ -46,14 +46,20 @@ const MinhasDividas = () => {
                 <h1>Minhas Dívidas</h1>
                 <p>Veja aqui as dívidas que você tem com a empresa e aproveite os descontos para quitar.</p>
             </div>
-            {debts && debts.length > 0 ? (
-                debts.map((debt) => (
-                    <CardMyDebts key={debt.id} setOpen={setOpen} debt={debt} />
-                ))
 
-            ) : (
-                <DebtCardSkeleton />
-            )}
+            <div className={S.cards}>
+                {debts && debts.length > 0 ? (
+                    debts.map((debt) => (
+                        <CardMyDebts key={debt.id} setOpen={setOpen} debt={debt} />
+                    ))
+
+                ) : (
+
+
+                    <DebtCardSkeleton numberOfCards={3} />
+
+                )}
+            </div>
 
             {open && (
                 <ModalDateSelect setOpen={setOpen} />

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import S from './modalDateSelect.module.css'
-import { IoClose, IoInformation, IoInformationCircleOutline } from "react-icons/io5";
+import { IoClose, IoInformationCircleOutline } from "react-icons/io5";
 import DateSelect from '../DateSelect';
 import Button from '../Button';
 
@@ -60,6 +60,7 @@ const ModalDateSelect = ({ setOpen }: ModalDateSelectProps) => {
                             <Button
                                 label={`Pagar à vista`}
                                 onClick={onConfirm}
+                                size='large'
                             />
                         )}
 

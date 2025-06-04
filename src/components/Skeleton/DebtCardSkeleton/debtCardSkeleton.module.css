@@ -1,12 +1,26 @@
 /* DebtCardSkeleton.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
 .card {
-  border: 1px solid #e5e7eb; /* Light gray border */
-  border-radius: 8px;
+  border: 1px solid #e5e7eb;
   overflow: hidden;
-  background-color: #ffffff; /* White background */
-  max-width: 400px; /* Adjust as needed */
-  margin: 20px auto; /* Center for demo */
+  background-color: #ffffff;
+  max-width: 400px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 400px;
 }
 
 .skeletonElement {
@@ -22,10 +36,21 @@
   margin-bottom: 8px;
 }
 
-.lineShort { width: 40%; }
-.lineSmall { width: 60%; }
-.lineMedium { width: 80%; }
-.lineLarge { width: 70%; font-size: 1.5em; height: 1.5em; margin-bottom: 12px; } /* Mimic larger price */
+.lineShort {
+  width: 40%;
+}
+.lineSmall {
+  width: 60%;
+}
+.lineMedium {
+  width: 80%;
+}
+.lineLarge {
+  width: 70%;
+  font-size: 1.5em;
+  height: 1.5em;
+  margin-bottom: 12px;
+} /* Mimic larger price */
 
 .header {
   background-color: #f3f4f6; /* Slightly darker gray for header background */
@@ -53,8 +78,13 @@
   margin-right: 16px; /* Space before badge */
 }
 
-.priceOriginal .lineSmall { width: 30%; margin-bottom: 4px; } /* "De R$" */
-.priceOriginal .lineMedium { width: 50%; } /* Original price */
+.priceOriginal .lineSmall {
+  width: 30%;
+  margin-bottom: 4px;
+} /* "De R$" */
+.priceOriginal .lineMedium {
+  width: 50%;
+} /* Original price */
 
 .discountBadge {
   width: 80px; /* Fixed width for badge */
@@ -67,21 +97,33 @@
 .priceDiscounted {
   margin-bottom: 16px;
 }
-.priceDiscounted .lineSmall { width: 30%; margin-bottom: 4px; } /* "Por R$" */
+.priceDiscounted .lineSmall {
+  width: 30%;
+  margin-bottom: 4px;
+} /* "Por R$" */
 /* .lineLarge is already defined for the discounted price */
-
 
 .dueDate {
   margin-bottom: 16px;
 }
-.dueDate .lineSmall { width: 40%; margin-bottom: 4px; } /* "Vencimento" */
-.dueDate .lineMedium { width: 50%; } /* Date */
+.dueDate .lineSmall {
+  width: 40%;
+  margin-bottom: 4px;
+} /* "Vencimento" */
+.dueDate .lineMedium {
+  width: 50%;
+} /* Date */
 
 .description {
   margin-bottom: 24px; /* More space before buttons */
 }
-.description .lineSmall { width: 90%; margin-bottom: 4px; } /* Description lines */
-.description .lineSmall:last-child { margin-bottom: 0; }
+.description .lineSmall {
+  width: 90%;
+  margin-bottom: 4px;
+} /* Description lines */
+.description .lineSmall:last-child {
+  margin-bottom: 0;
+}
 
 .actions {
   padding: 16px;
@@ -91,7 +133,8 @@
   gap: 10px; /* Space between buttons */
 }
 
-.button, .buttonOutline {
+.button,
+.buttonOutline {
   height: 44px; /* Button height */
   background-color: #e5e7eb;
   border-radius: 6px;
@@ -107,16 +150,21 @@
 }
 
 .avatarPlaceholder {
-    width: 24px;
-    height: 24px;
-    background-color: #d1d5db; /* Darker gray for avatar */
-    border-radius: 50%; /* Circular avatar */
-    flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #d1d5db; /* Darker gray for avatar */
+  border-radius: 50%; /* Circular avatar */
+  flex-shrink: 0;
 }
 
 .buttonText {
-    height: 1em; /* Match text height */
-    margin-bottom: 0; /* Remove default margin */
-    flex-grow: 1; /* Allow text to take remaining space */
+  height: 1em; /* Match text height */
+  margin-bottom: 0; /* Remove default margin */
+  flex-grow: 1; /* Allow text to take remaining space */
 }
 
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}

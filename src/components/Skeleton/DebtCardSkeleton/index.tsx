@@ -1,56 +1,51 @@
 import React from 'react';
-import styles from './debtCardSkeleton.module.css';
+import S from './debtCardSkeleton.module.css';
 
-const DebtCardSkeleton = () => {
+interface DebtCardSkeletonProps {
+  numberOfCards: number;
+}
+
+const DebtCardSkeleton = ({ numberOfCards }: DebtCardSkeletonProps) => {
   return (
-    <div className={styles.card}>
-      {/* Header Section */}
-      <div className={styles.header}>
-        <div className={`${styles.line} ${styles.lineSmall}`}></div>
-        <div className={`${styles.line} ${styles.lineMedium}`}></div>
-      </div>
-
-      {/* Content Section */}
-      <div className={styles.content}>
-        {/* Price Section */}
-        <div className={styles.priceSection}>
-          <div className={styles.priceOriginal}>
-            <div className={`${styles.line} ${styles.lineSmall}`}></div>
-            <div className={`${styles.line} ${styles.lineMedium}`}></div>
+    <div className={S.container}>
+      {Array.from({ length: numberOfCards }).map((_, index) => (
+        <div key={index} className={S.card}>
+          <div className={S.header}>
+            <div className={`${S.line} ${S.lineSmall}`}></div>
+            <div className={`${S.line} ${S.lineMedium}`}></div>
           </div>
-          <div className={styles.discountBadge}></div>
-        </div>
 
-        {/* Discounted Price */}
-        <div className={styles.priceDiscounted}>
-          <div className={`${styles.line} ${styles.lineSmall}`}></div>
-          <div className={`${styles.line} ${styles.lineLarge}`}></div>
-        </div>
+          <div className={S.content}>
+            <div className={S.priceSection}>
+              <div className={S.priceOriginal}>
+                <div className={`${S.line} ${S.lineMedium}`}></div>
+              </div>
+              <div className={S.discountBadge}></div>
+            </div>
 
-        {/* Due Date */}
-        <div className={styles.dueDate}>
-          <div className={`${styles.line} ${styles.lineSmall}`}></div>
-          <div className={`${styles.line} ${styles.lineMedium}`}></div>
-        </div>
+            <div className={S.priceDiscounted}>
+              <div className={`${S.line} ${S.lineLarge}`}></div>
+            </div>
 
-        {/* Description */}
-        <div className={styles.description}>
-          <div className={`${styles.line} ${styles.lineSmall}`}></div>
-          <div className={`${styles.line} ${styles.lineSmall}`}></div>
-          <div className={`${styles.line} ${styles.lineSmall}`}></div>
-        </div>
-      </div>
+            <div className={S.dueDate}>
+              <div className={`${S.line} ${S.lineSmall}`}></div>
+              <div className={`${S.line} ${S.lineMedium}`}></div>
+            </div>
 
-      {/* Actions Section */}
-      <div className={styles.actions}>
-        <div className={styles.button}></div>
-        <div className={styles.buttonOutline}>
-          <div className={`${styles.line} ${styles.buttonText} ${styles.lineMedium}`}></div>
+            <div className={S.description}>
+              <div className={`${S.line} ${S.lineSmall}`}></div>
+              <div className={`${S.line} ${S.lineSmall}`}></div>
+              <div className={`${S.line} ${S.lineSmall}`}></div>
+            </div>
+          </div>
+
+          <div className={S.actions}>
+            <div className={S.button}></div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
-  );
+  )
 };
 
 export default DebtCardSkeleton;
-

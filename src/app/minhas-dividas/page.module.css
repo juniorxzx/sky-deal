@@ -24,3 +24,8 @@
     margin-bottom: var(--space-lg);
   }
 }
+
+.cards {
+  display: flex;
+  width: 100%;
+}

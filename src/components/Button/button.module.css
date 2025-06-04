@@ -1,5 +1,4 @@
 .container {
-  width: 100%;
   padding: var(--space-sm);
   border-radius: var(--radius-md);
   font-size: var(--font-size-md);
@@ -13,7 +12,6 @@
 }
 
 .primary {
-  width: 100%;
   padding: var(--space-sm);
   border-radius: var(--radius-md);
   font-size: var(--font-size-md);
@@ -23,7 +21,6 @@
   cursor: pointer;
 }
 .secondary {
-  width: 100%;
   padding: var(--space-sm);
   border-radius: var(--radius-md);
   font-size: var(--font-size-md);
@@ -42,4 +39,16 @@
   background-color: var(--color-light-gray);
   border: none;
   cursor: not-allowed;
+}
+
+.small {
+  width: 50%;
+}
+
+.medium {
+  width: 80%;
+}
+
+.large {
+  width: 100%;
 }

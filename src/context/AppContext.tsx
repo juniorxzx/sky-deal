@@ -1,6 +1,5 @@
 'use client'
 
-import { da } from 'date-fns/locale'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 type PaymentMethod = 'pix' | 'boleto' | null
@@ -9,8 +8,8 @@ type PaymentMethod = 'pix' | 'boleto' | null
 type AppContextType = {
     user: string | null
     setUser: (user: string | null) => void
-    selectedDate: Date | null
-    setSelectedDate: (date: Date | null) => void
+    selectedDate: Date
+    setSelectedDate: (date: Date) => void
     userCpf: string | null
     setUserCpf: (cpf: string | null) => void
     paymentMethod: PaymentMethod
@@ -20,7 +19,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined)
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<string | null>(null)
-    const [selectedDate, setSelectedDate] = useState<Date | null>(Date.now() ? new Date() : null)
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date())
     const [userCpf, setUserCpf] = useState<string | null>(null)
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('pix')
 

@@ -1,0 +1,82 @@
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-md);
+  color: var(--color-dark-gray);
+}
+
+.detailsContainer .details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.detailsContainer .details p {
+  font-size: var(--font-size-sm);
+  color: var(--color-medium-gray);
+  margin: 0;
+}
+.detailsContainer .details h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-dark-gray);
+  margin-bottom: var(--space-sm);
+}
+
+.detailsContainer .details .detailsInfo h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: var(--font-size-md);
+  text-align: center;
+}
+
+.detailsContainer .discount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-light-gray);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-md);
+}
+
+.detailsContainer .discount .values {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.detailsContainer .discount .values .originalValue {
+  text-decoration: line-through;
+  color: var(--color-medium-gray);
+}
+
+.detailsContainer .discount .values .discountedValue {
+  font-size: var(--font-size-xxl);
+  font-weight: bold;
+  color: var(--color-green);
+}
+
+.paymentDetails .dateContainer span {
+  font-size: var(--font-size-lg);
+  color: var(--color-dark-gray);
+
+  font-weight: 500;
+}
+
+.paymentDetails .dateContainer .boxDate {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-red);
+}
+
+.paymentDetails .dateContainer .boxDate span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-red);
+}

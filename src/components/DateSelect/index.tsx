@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useMemo, useState } from 'react'
-import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns'
+import React, { useMemo } from 'react'
+import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 
@@ -12,14 +12,13 @@ interface DateSelectProps {
     numberOfDays: number
     selectedDate: Date | null
     onSelectDate: (date: Date) => void
-
 }
 
 const DateSelect = ({ initialDate,
     numberOfDays,
     selectedDate,
     onSelectDate }: DateSelectProps) => {
-    const [currentMonth, setCurrentMonth] = useState(initialDate)
+    const currentMonth = useMemo(() => initialDate, [initialDate])
 
     const validDates = useMemo(() => {
         return Array.from({ length: numberOfDays }, (_, i) => addDays(initialDate, i))

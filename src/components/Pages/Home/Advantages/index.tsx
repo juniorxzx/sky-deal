@@ -13,8 +13,8 @@ const Advantages = () => {
         <section id="vantagens" className={S.advantages}>
             <div className={S.container}>
                 <motion.div className={S.sectionHeader}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}>
                     <div className={S.sectionHeaderTitle}>
                         <div className={S.line}></div>
@@ -26,7 +26,7 @@ const Advantages = () => {
                 <div className={S.cards}>
                     <motion.div className={S.card}
                         whileInView={{ opacity: 1, x: 0 }}
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}>
                         <h2 className={S.title}>
                             Vantagens exclusivas para você
@@ -48,15 +48,15 @@ const Advantages = () => {
                     </motion.div>
 
                     <motion.div className={S.image}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
                         transition={{ duration: 0.7 }}
                     >
                         <Image src={AdvantageImage} alt='' />
                     </motion.div>
                     <motion.div className={S.card2}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className={S.title}>

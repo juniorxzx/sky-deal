@@ -4,11 +4,12 @@ import React, { useState } from 'react'
 import S from './page.module.css'
 import Button from '@/components/Button'
 import { useAppContext } from '@/context/AppContext'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { MdPix } from "react-icons/md";
 import { IoBarcodeOutline } from 'react-icons/io5'
 
 import { CiCalendar } from "react-icons/ci";
+import ModalUserDetails from '@/components/ModalUserDetails'
 
 const ConfirmationPage = () => {
     const [accepted, setAccepted] = useState(false)
@@ -16,7 +17,11 @@ const ConfirmationPage = () => {
 
     const { selectedDate, setPaymentMethod, paymentMethod, } = useAppContext()
 
-    console.log(paymentMethod)
+    const handleNext = () => {
+        if (accepted) {
+            setOpen(true)
+        }
+    }
     return (
         <main className={S.container}>
             <motion.div
@@ -124,10 +129,10 @@ const ConfirmationPage = () => {
                     <h3>CLÁUSULA QUARTA – DAS DISPOSIÇÕES GERAIS</h3>
                     <p>4.1. Permanecem inalteradas e em pleno vigor todas as demais cláusulas e condições do contrato original que não conflitarem com o disposto neste Termo de Renegociação.</p>
                     <p>4.2. O CONTRATANTE declara que leu, compreendeu e concorda integralmente com todos os termos e condições aqui estabelecidos, tendo recebido todas as informações necessárias de forma clara e precisa.</p>
-                    <p>4.3. Este termo é gerado eletronicamente e o aceite se dará por meio de [MECANISMO DE ACEITE, ex: clique no botão "Concordo", confirmação via SMS, etc.], o qual terá validade jurídica como assinatura das partes para todos os fins de direito.</p>
+                    <p>4.3. Este termo é gerado eletronicamente e o aceite se dará por meio de [MECANISMO DE ACEITE, ex: clique no botão &quot;Concordo&quot;, confirmação via SMS, etc.], o qual terá validade jurídica como assinatura das partes para todos os fins de direito.</p>
 
                     <h3>CLÁUSULA QUINTA – DO ACEITE</h3>
-                    <p>5.1. Ao clicar em "LI E ACEITO OS TERMOS" ou realizar o procedimento de confirmação indicado, o CONTRATANTE manifesta sua concordância expressa e inequívoca com todas as cláusulas e condições desta renegociação, reconhecendo-as como válidas e eficazes.</p>
+                    <p>5.1. Ao clicar em &quot;LI E ACEITO OS TERMOS&quot; ou realizar o procedimento de confirmação indicado, o CONTRATANTE manifesta sua concordância expressa e inequívoca com todas as cláusulas e condições desta renegociação, reconhecendo-as como válidas e eficazes.</p>
 
                     <br />
                     <p>Local e Data: [GERADO AUTOMATICAMENTE PELO SISTEMA - Ex: Valinhos, 02 de junho de 2025]</p>
@@ -146,11 +151,15 @@ const ConfirmationPage = () => {
                     <label htmlFor="terms">Li e aceito os termos de renegociação contratual</label>
                 </div>
                 <div className={S.confirmationButton}>
-                    <Button label={'Voltar'} type='secondary' />
-                    <Button label={'Confirmar'} type='primary' disabled={!accepted} />
+                    <Button label="Voltar" type="secondary" />
+                    <Button label="Confirmar" type="primary" disabled={!accepted} onClick={handleNext} />
                 </div>
             </motion.div>
-
+            <AnimatePresence>
+                {open && (
+                    <ModalUserDetails setOpen={setOpen} />
+                )}
+            </AnimatePresence>
 
 
         </main>

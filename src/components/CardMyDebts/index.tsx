@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import S from './page.module.css'
+import S from './cardMyDebts.module.css'
 import Button from '../Button';
 
 type DebtData = {
@@ -57,7 +57,7 @@ const CardMyDebts = ({ setOpen, debt }: CardMyDebtsProps) => {
             </div>
 
             <div className={S.cardButtons}>
-                <Button label='Pagar à vista' onClick={handlePay} />
+                <Button label='Pagar à vista' onClick={handlePay} size='large'/>
                 {/* <Button label='Simular parcelamento' type='secondary' /> */}
             </div>
         </div>

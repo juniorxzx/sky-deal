@@ -77,6 +77,10 @@
   width: 100%;
 }
 
+.heroForm .formGroup .formButton {
+  max-width: 100%;
+}
+
 .heroBadges {
   display: flex;
   gap: 1.5rem;
@@ -166,7 +170,14 @@
   }
   .heroForm .formGroup {
     width: 100%;
+    flex-direction: row;
   }
+
+  .heroForm .formGroup .formButton {
+    max-width: 200px;
+    width: 100%;
+  }
+
   .herp .heroImage {
     width: 100%;
     height: 100%;

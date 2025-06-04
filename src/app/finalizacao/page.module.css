@@ -1,0 +1,33 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background-color: var(--color-light-gray);
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-md);
+  color: var(--color-dark-gray);
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .container .detailsContainer {
+    width: 400px;
+  }
+}
