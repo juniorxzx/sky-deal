@@ -28,4 +28,12 @@
 .cards {
   display: flex;
   width: 100%;
+  gap: var(--space-lg);
+  padding: var(--space-md) 0;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
 }

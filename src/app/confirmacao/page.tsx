@@ -5,22 +5,27 @@ import S from './page.module.css'
 import Button from '@/components/Button'
 import { useAppContext } from '@/context/AppContext'
 import { AnimatePresence, motion } from 'framer-motion'
-import { MdPix } from "react-icons/md";
 import { IoBarcodeOutline } from 'react-icons/io5'
-
-import { CiCalendar } from "react-icons/ci";
 import ModalUserDetails from '@/components/ModalUserDetails'
+import { useRouter } from 'next/navigation'
+import { BiCalendar, BiCreditCard } from 'react-icons/bi'
 
 const ConfirmationPage = () => {
     const [accepted, setAccepted] = useState(false)
     const [open, setOpen] = useState(false)
-
-    const { selectedDate, setPaymentMethod, paymentMethod, } = useAppContext()
+    const router = useRouter()
+    const { selectedDate, setPaymentMethod, paymentMethod, debtSelected } = useAppContext()
 
     const handleNext = () => {
         if (accepted) {
             setOpen(true)
         }
+    }
+    const handleSubmit = () => {
+
+        setOpen(false);
+        router.push('/finalizacao');
+
     }
     return (
         <main className={S.container}>
@@ -30,54 +35,52 @@ const ConfirmationPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}>
                 <div className={S.details}>
-                    <p>593120024</p>
+                    <p>{debtSelected?.contrato}</p>
                     <h3>Negociação referente a quitação total do contrato</h3>
                     <div className={S.detailsInfo}>
-                        <h1>TV por assinatura</h1>
+                        <h1>{debtSelected?.descricao}</h1>
                     </div>
 
                 </div>
-                <div className={S.discount}>
-                    <h2>Desconto de 50%</h2>
+                <div className={S.cardValue}>
                     <div className={S.values}>
+                        <div className={S.valueLabel}>Valor a pagar</div>
+
+                        {/* {debt.valor !== debt.fValor && (
                         <div className={S.originalValue}>
-
-                            <p>R$ 2.412,00</p>
+                            De: {debt.valor}
                         </div>
-
-                        <div className={S.discountedValue}>
-
-                            <p>R$ 1.206,00</p>
+                    )} */}
+                        <div className={S.currentValue}>
+                            {debtSelected?.fValor}
                         </div>
                     </div>
-
                 </div>
 
                 <div className={S.paymentDetails}>
-                    <div className={S.dateContainer}>
-                        <span>Data de vencimento</span>
-
-                        <div className={S.boxDate} onClick={() => setOpen(true)} >
-                            <CiCalendar size={20} />
-                            {selectedDate && (
-
-                                <span>{selectedDate.toLocaleDateString()}</span>
-                            )}
+                    <div className={S.dateSection}>
+                        <div className={S.dateLabel}>
+                            <BiCalendar size={16} />
+                            <span>Vencimento Original</span>
+                        </div>
+                        <div className={S.dateValue}>
+                            {selectedDate && selectedDate.toLocaleDateString('pt-BR')}
                         </div>
                     </div>
 
                     <div className={S.paymentMethod}>
-                        <span>Selecione uma forma de pagamento</span>
+                        <div className={S.dateLabel}>
+                            <BiCreditCard size={16} />
+                            <span>Selecione uma forma de pagamento</span>
+                        </div>
                         <div className={S.radioContainer}>
-                            <div className={`${S.radio} ${paymentMethod === 'pix' ? S.selected : ''}`} onClick={() => setPaymentMethod('pix')}>
-                                {/* <div className={S.msg}>
-                                    Recomendado
-                                </div> */}
-                                <div className={S.icon} onClick={() => setPaymentMethod('pix')}>
+                            {/* <div className={`${S.radio} ${S.disabled} ${paymentMethod === 'pix' ? S.selected : ''}`} >
+
+                                <div className={S.icon}>
                                     <MdPix size={34} />
                                 </div>
                                 <span>Pix</span>
-                            </div>
+                            </div> */}
                             <div className={`${S.radio} ${paymentMethod === 'boleto' ? S.selected : ''}`} onClick={() => setPaymentMethod('boleto')}>
                                 <div className={S.icon}>
                                     <IoBarcodeOutline size={34} />
@@ -151,13 +154,13 @@ const ConfirmationPage = () => {
                     <label htmlFor="terms">Li e aceito os termos de renegociação contratual</label>
                 </div>
                 <div className={S.confirmationButton}>
-                    <Button label="Voltar" type="secondary" />
+                    <Button label="Voltar" type="secondary" onClick={() => router.push('/minhas-dividas')} />
                     <Button label="Confirmar" type="primary" disabled={!accepted} onClick={handleNext} />
                 </div>
             </motion.div>
             <AnimatePresence>
                 {open && (
-                    <ModalUserDetails setOpen={setOpen} />
+                    <ModalUserDetails setOpen={setOpen} onIgnore={handleSubmit} onSubmit={handleSubmit} />
                 )}
             </AnimatePresence>
 

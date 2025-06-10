@@ -4,28 +4,22 @@ import { IoClose } from "react-icons/io5";
 import Button from '../Button';
 import InputNumber from '../Input/InputNumber';
 import InputEmail from '../Input/InputEmail';
-import { useRouter } from 'next/navigation';
 
 
 interface ModalUserDetailsProps {
     setOpen: (open: boolean) => void;
+    onSubmit?: () => void;
+    onIgnore?: () => void;
 }
-const ModalUserDetails = ({ setOpen }: ModalUserDetailsProps) => {
+const ModalUserDetails = ({ setOpen, onSubmit, onIgnore }: ModalUserDetailsProps) => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [isPhoneValid, setIsPhoneValid] = useState(false)
     const [isEmailValid, setIsEmailValid] = useState(false)
 
     const isFormValid = phone && email && isPhoneValid && isEmailValid
-    const router = useRouter()
-    const handleSubmit = () => {
-        if (isFormValid) {
-            setOpen(false);
-            router.push('/finalizacao');
-        } else {
-            console.error('Formulário inválido');
-        }
-    }
+
+
     return (
         <div className={S.container}>
             <div className={S.modalContent}>
@@ -40,7 +34,8 @@ const ModalUserDetails = ({ setOpen }: ModalUserDetailsProps) => {
                         <InputNumber label='Número de telefone' onChange={setPhone} value={phone} placeholder='(xx) xxxx-xxxx' setValid={setIsPhoneValid} />
                         <InputEmail label='Email' onChange={setEmail} value={email} placeholder='xxxx@xxxx.com' setValid={setIsEmailValid} />
                     </div>
-                    <Button disabled={!isFormValid} size='large' label='Continuar' onClick={handleSubmit} />
+                    <Button disabled={!isFormValid} size='large' label='Continuar' onClick={onSubmit} />
+                    <Button size='large' label='Pular etapa' onClick={onIgnore} type='secondary' />
                 </div>
 
             </div>

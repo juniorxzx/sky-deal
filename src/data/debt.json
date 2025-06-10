@@ -1,0 +1,21 @@
+[
+  {
+    "name": "João Silva",
+    "cpf": "12345678900",
+    "debts": [
+      {
+        "id": "13209123",
+        "title": "TV por assinatura",
+        "originalValue": "2.412,00",
+        "discountedValue": "1.206,00",
+        "dueDate": "10/06/2025",
+        "discountPercentage": "50%"
+      }
+    ]
+  },
+  {
+    "name": "Maria Souza",
+    "cpf": "98765432100",
+    "debts": []
+  }
+]

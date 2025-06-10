@@ -32,51 +32,74 @@
   text-align: center;
 }
 
-.detailsContainer .discount {
+.detailsContainer .paymentDetails .paymentMethod {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md);
-  background-color: var(--color-light-gray);
-  box-shadow: var(--shadow-soft);
+}
+
+.dateSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  /* background: var(--color-light-gray); */
   border-radius: var(--radius-md);
 }
 
-.detailsContainer .discount .values {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.detailsContainer .discount .values .originalValue {
-  text-decoration: line-through;
+.dateLabel {
+  font-size: var(--font-size-xs);
   color: var(--color-medium-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-items: center;
+  display: flex;
+  gap: var(--space-xs);
 }
 
-.detailsContainer .discount .values .discountedValue {
+.dateValue {
+  font-size: var(--font-size-md);
+  color: var(--color-dark-gray);
+  font-weight: 600;
+}
+
+.cardValue .values {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.originalValue {
+  color: var(--color-medium-gray);
+  text-decoration: line-through;
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+}
+
+.currentValue {
+  font-weight: 800;
   font-size: var(--font-size-xxl);
-  font-weight: bold;
-  color: var(--color-green);
+  color: var(--color-dark-gray);
+  line-height: 1.2;
 }
 
 .paymentDetails .dateContainer span {
   font-size: var(--font-size-lg);
   color: var(--color-dark-gray);
-
   font-weight: 500;
 }
 
-.paymentDetails .dateContainer .boxDate {
+.detailsContainer .paymentDetails {
   display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-red);
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
-.paymentDetails .dateContainer .boxDate span {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-red);
+@media (min-width: 768px) {
+  .detailsContainer {
+    width: 300px;
+  }
 }

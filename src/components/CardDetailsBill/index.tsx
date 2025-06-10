@@ -1,23 +1,19 @@
+'use client'
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import S from './cardDetailsBill.module.css'
-import { CiCalendar } from 'react-icons/ci';
+import { DebtData } from '@/@types/debt.type';
+import { BiCalendar } from 'react-icons/bi';
+import { useAppContext } from '@/context/AppContext';
 
 
 interface CardDetailsBillProps {
-    contractInfo: {
-        contractNumber: string;
-        description: string;
-        serviceType: string;
-        originalValue: number;
-        discountedValue: number;
-        discountPercentage: number;
-        dueDate: Date;
-
-    }
+    debtSelected?: DebtData
 }
 
-const CardDetailsBill = ({ contractInfo }: CardDetailsBillProps) => {
+const CardDetailsBill = ({ debtSelected }: CardDetailsBillProps) => {
+    const { selectedDate } = useAppContext();
     return (
         <motion.div
             className={S.detailsContainer}
@@ -25,39 +21,36 @@ const CardDetailsBill = ({ contractInfo }: CardDetailsBillProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}>
             <div className={S.details}>
-                <p>{contractInfo.contractNumber}</p>
-                <h3>{contractInfo.description}</h3>
+                <p>{debtSelected?.contrato}</p>
+                <h3>Negociação referente a quitação total do contrato</h3>
                 <div className={S.detailsInfo}>
-                    <h1>{contractInfo.serviceType}</h1>
+                    <h1>{debtSelected?.descricao}</h1>
                 </div>
+
             </div>
-            <div className={S.discount}>
-                <h2>Desconto de {contractInfo.discountPercentage}%</h2>
+            <div className={S.cardValue}>
                 <div className={S.values}>
-                    <div className={S.originalValue}>
-                        <p>
-                            {contractInfo.originalValue.toLocaleString('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                            })}
-                        </p>
-                    </div>
-                    <div className={S.discountedValue}>
-                        <p>
-                            {contractInfo.discountedValue.toLocaleString('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                            })}
-                        </p>
+                    <div className={S.valueLabel}>Valor a pagar</div>
+
+                    {/* {debt.valor !== debt.fValor && (
+                        <div className={S.originalValue}>
+                            De: {debt.valor}
+                        </div>
+                    )} */}
+                    <div className={S.currentValue}>
+                        {debtSelected?.fValor}
                     </div>
                 </div>
             </div>
+
             <div className={S.paymentDetails}>
-                <div className={S.dateContainer}>
-                    <span>Data de vencimento</span>
-                    <div className={S.boxDate}>
-                        <CiCalendar size={20} />
-                        <span>{contractInfo.dueDate.toLocaleDateString('pt-BR')}</span>
+                <div className={S.dateSection}>
+                    <div className={S.dateLabel}>
+                        <BiCalendar size={16} />
+                        <span>Vencimento Original</span>
+                    </div>
+                    <div className={S.dateValue}>
+                        {selectedDate && selectedDate.toLocaleDateString('pt-BR')}
                     </div>
                 </div>
             </div>

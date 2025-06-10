@@ -15,14 +15,18 @@ interface ModalDateSelectProps {
 
 
 const ModalDateSelect = ({ setOpen }: ModalDateSelectProps) => {
-    const { selectedDate, setSelectedDate } = useAppContext()
+    const { selectedDate, setSelectedDate, debtSelected } = useAppContext()
 
     const router = useRouter();
 
     const onConfirm = () => {
         if (selectedDate) {
-            setOpen(false);
-            router.push('/confirmacao');
+            if (debtSelected) {
+                setOpen(false);
+                router.push('/confirmacao');
+            } else {
+                setOpen(false)
+            }
         }
     }
 

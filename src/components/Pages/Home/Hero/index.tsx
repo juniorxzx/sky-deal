@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import S from './hero.module.css'
 import { motion } from 'framer-motion'
 
@@ -8,19 +8,30 @@ import Image from 'next/image'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import { useRouter } from 'next/navigation'
+import { useAppContext } from '@/context/AppContext'
 
 const HeroSection = () => {
 
-    const [cpf, setCpf] = useState('')
+    const { userCpf, setUserCpf, setUser } = useAppContext()
 
     const router = useRouter()
+
+    async function searchClient(cpf: string) {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clientes/${cpf}`)
+        const data = await res.json()
+        setUser(data)
+    }
+
     const handleClick = () => {
-        if (cpf.length < 11) {
+        if (!userCpf || userCpf.length < 11) {
             alert('Por favor, insira um CPF válido.')
             return
         }
-        router.push(`/minhas-dividas`)
-        setCpf('')
+        else {
+
+            searchClient(userCpf)
+            router.push(`/minhas-dividas`)
+        }
     }
 
 
@@ -46,7 +57,7 @@ const HeroSection = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}>
                         <div className={S.formGroup}>
-                            <Input label='Digite seu CPF para consultar' mask='cpf' value={cpf} onChange={setCpf} />
+                            <Input label='Digite seu CPF para consultar' mask='cpf' value={userCpf ?? ''} onChange={setUserCpf} />
                             <div className={S.formButton}>
                                 <Button type='primary' label='Consultar' className={S.button} size='large' onClick={handleClick} />
                             </div>

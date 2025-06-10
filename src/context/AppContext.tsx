@@ -1,5 +1,6 @@
 'use client'
 
+import { DebtData } from '@/@types/debt.type'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 type PaymentMethod = 'pix' | 'boleto' | null
@@ -14,6 +15,9 @@ type AppContextType = {
     setUserCpf: (cpf: string | null) => void
     paymentMethod: PaymentMethod
     setPaymentMethod: (method: PaymentMethod) => void
+
+    debtSelected?: DebtData
+    setDebtSelected?: (debt: DebtData) => void
 }
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
@@ -21,8 +25,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<string | null>(null)
     const [selectedDate, setSelectedDate] = useState<Date>(new Date())
     const [userCpf, setUserCpf] = useState<string | null>(null)
-    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('pix')
-
+    const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('boleto')
+    const [debtSelected, setDebtSelected] = useState<DebtData>()
 
     const contextValue = {
         user,
@@ -32,7 +36,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         userCpf,
         setUserCpf,
         paymentMethod,
-        setPaymentMethod
+        setPaymentMethod,
+        debtSelected, setDebtSelected
     }
 
     return (

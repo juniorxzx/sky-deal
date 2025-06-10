@@ -3,61 +3,84 @@
 import React from 'react'
 import S from './cardMyDebts.module.css'
 import Button from '../Button';
+import { BiCalendar, BiCreditCard, BiInfoCircle } from 'react-icons/bi';
+import { DebtData } from '@/@types/debt.type';
 
-type DebtData = {
-    id: string;
-    title: string;
-    originalValue: string;
-    discountedValue: string;
-    dueDate: string;
-    discountPercentage: string;
-}
 
 interface CardMyDebtsProps {
     setOpen: (open: boolean) => void;
-    debt?: DebtData
+    debt: DebtData;
+    setSelectedDebt?: (debt: DebtData) => void;
 }
 
-const CardMyDebts = ({ setOpen, debt }: CardMyDebtsProps) => {
+const CardMyDebts = ({ setOpen, debt, setSelectedDebt }: CardMyDebtsProps) => {
 
 
     const handlePay = () => {
+        if (!setSelectedDebt) return;
+        setSelectedDebt(debt);
         setOpen(true);
     }
     return (
         <div className={S.card}>
             <div className={S.cardHeader}>
-                <h1>{debt?.title}</h1>
-                <span>{debt?.id}</span>
+                <h1>{debt?.descricao}</h1>
+                <span>{debt?.contrato}</span>
             </div>
             <div className={S.cardValue}>
                 <div className={S.values}>
-                    <span >
-                        De <span className={S.textDefault}>R$ {debt?.originalValue}</span>
-                    </span>
-                    <span className={S.textValue}>
-                        Por <span className={S.textAlert}>R$ {debt?.discountedValue}</span>
-                    </span>
-                </div>
+                    <div className={S.valueLabel}>Valor a pagar</div>
 
-                <div className={S.discount}>
-                    <span>Desconto de até {debt?.discountPercentage}</span>
+                    {/* {debt.valor !== debt.fValor && (
+                        <div className={S.originalValue}>
+                            De: {debt.valor}
+                        </div>
+                    )} */}
+                    <div className={S.currentValue}>
+                        {debt.fValor}
+                    </div>
                 </div>
             </div>
 
             <div className={S.cardBody}>
-                <div className={S.dateExpires}>
-                    <span>Vencimento</span>
-                    <span>{debt?.dueDate}</span>
+                <div className={S.dateSection}>
+                    <div className={S.dateLabel}>
+                        <BiCalendar size={16} />
+                        <span>Vencimento Original</span>
+                    </div>
+                    <div className={S.dateValue}>
+                        {debt.vencimentoOriginal}
+                    </div>
                 </div>
-                <div className={S.msgExpires}>
-                    <span>Você ainda poderá trocar o vencimento</span>
-                    <span> O desconto concedido e o valor a pagar poderá mudar conforme a data de vencimento e a forma de pagamento</span>
+
+                <div className={S.infoSection}>
+                    <div className={S.infoItem}>
+                        <div className={S.infoIcon}>
+                            <BiCreditCard size={14} />
+                        </div>
+                        <span className={S.infoText}>
+                            Você ainda poderá trocar o vencimento
+                        </span>
+                    </div>
+
+                    <div className={S.infoItem}>
+                        <div className={S.infoIcon}>
+                            <BiInfoCircle size={14} />
+                        </div>
+                        <span className={S.infoText}>
+                            O desconto concedido e o valor a pagar poderá mudar conforme a debt de vencimento e a forma de pagamento
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div className={S.cardButtons}>
-                <Button label='Pagar à vista' onClick={handlePay} size='large'/>
+
+                {debt.segundaVia ? (
+                    <Button label='Segunda Via' type='secondary' size='large' />
+                ) : (
+                    <Button label='Pagar à vista' onClick={handlePay} size='large' />
+                )}
                 {/* <Button label='Simular parcelamento' type='secondary' /> */}
             </div>
         </div>

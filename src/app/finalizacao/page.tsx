@@ -1,28 +1,32 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import S from './page.module.css'
 import { useAppContext } from '@/context/AppContext'
 import CardDetailsBill from '@/components/CardDetailsBill'
-import PixQRCode from '@/components/PixQRCode'
+import Button from '@/components/Button'
 
 const Finish = () => {
-    const { selectedDate } = useAppContext();
+    const { selectedDate, debtSelected } = useAppContext();
+    const [copied, setCopied] = useState(false)
+    const digitableLine =
+        '34191.79001 01043.510047 91020.150008 8 000000120600'
 
-    const mockContractInfo = {
-        contractNumber: '593120024',
-        description: 'Negociação referente a quitação total do contrato',
-        serviceType: 'TV por assinatura',
-        originalValue: 2412.00,
-        discountedValue: 1206.00,
-        discountPercentage: 50,
-        dueDate: new Date(selectedDate)
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(digitableLine.replace(/\s/g, ''))
+            setCopied(true)
+            setTimeout(() => setCopied(false), 2000)
+        } catch {
+            setCopied(false)
+        }
     }
+
 
     return (
         <main className={S.container}>
-            <CardDetailsBill contractInfo={mockContractInfo} />
+            <CardDetailsBill debtSelected={debtSelected} />
 
             <motion.div
                 className={S.paymentContainer}
@@ -32,11 +36,20 @@ const Finish = () => {
                 <div>
                     <h1>Realize o pagamento até {selectedDate?.toLocaleString().split(',')[0]} e garanta seu desconto </h1>
                 </div>
-                <h3>Copie o código da linha digitável ou escaneie o QRcode para realizar o pagamento via PIX</h3>
+                <h3>Copie o código da linha digitável</h3>
                 <span>Atente-se a data de vencimento, o não pagamento no prazo irá cancelar a proposta. </span>
 
                 <div className={S.payment}>
-                    <PixQRCode merchantCity='São Paulo' merchantName='Allan Souza' pixKey='120312031231' transactionAmount={1206} />
+                    {/* <PixQRCode merchantCity='São Paulo' merchantName='Allan Souza' pixKey='120312031231' transactionAmount={1206} /> */}
+
+                    <div className={S.codeContainer}>
+                        <div className={S.info}>
+
+                            <h2 className={S.digitableLine}>34191.79001 01043.510047 91020.150008 8 000000120600</h2>
+                        </div>
+                    </div>
+                    <Button label={`${copied ? 'Copiado' : 'Copiar'}`} onClick={handleCopy} size='large' type='primary' />
+
                 </div>
 
             </motion.div>
