@@ -78,7 +78,6 @@ jobs:
           export NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
           export NEXT_PUBLIC_TOKEN_SECRET=${{ secrets.NEXT_PUBLIC_TOKEN_SECRET }}
           ${{ steps.detect-package-manager.outputs.runner }} next build
-          ${{ steps.detect-package-manager.outputs.runner }} next export
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
