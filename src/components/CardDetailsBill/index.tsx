@@ -3,16 +3,25 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import S from './cardDetailsBill.module.css'
-import { DebtData } from '@/@types/debt.type';
 import { BiCalendar } from 'react-icons/bi';
 import { useAppContext } from '@/context/AppContext';
 
 
 interface CardDetailsBillProps {
-    debtSelected?: DebtData
+    titulo?: {
+        titulo: string,
+        contrato: string,
+        descricao: string,
+        valor: string,
+        fvalor: string,
+        vencimento_original: string,
+        status: number,
+        codigo_barras: string,
+        linha_digitavel: string
+    }
 }
 
-const CardDetailsBill = ({ debtSelected }: CardDetailsBillProps) => {
+const CardDetailsBill = ({  titulo }: CardDetailsBillProps) => {
     const { selectedDate } = useAppContext();
     return (
         <motion.div
@@ -21,10 +30,10 @@ const CardDetailsBill = ({ debtSelected }: CardDetailsBillProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}>
             <div className={S.details}>
-                <p>{debtSelected?.contrato}</p>
+                <p>{titulo?.contrato}</p>
                 <h3>Negociação referente a quitação total do contrato</h3>
                 <div className={S.detailsInfo}>
-                    <h1>{debtSelected?.descricao}</h1>
+                    <h1>{titulo?.descricao}</h1>
                 </div>
 
             </div>
@@ -38,7 +47,7 @@ const CardDetailsBill = ({ debtSelected }: CardDetailsBillProps) => {
                         </div>
                     )} */}
                     <div className={S.currentValue}>
-                        {debtSelected?.fValor}
+                        {titulo?.fvalor}
                     </div>
                 </div>
             </div>

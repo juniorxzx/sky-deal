@@ -10,9 +10,10 @@ interface ButtonProps {
     className?: string;
     type?: 'primary' | 'secondary'
     size?: 'small' | 'medium' | 'large';
+    icon?: React.ReactNode;
 }
 
-const Button = ({ onClick, className, type = 'primary', disabled, label, size = 'medium' }: ButtonProps) => {
+const Button = ({ onClick, className, type = 'primary', disabled, label, size = 'medium', icon }: ButtonProps) => {
     return (
         <div
             className={`
@@ -24,6 +25,11 @@ const Button = ({ onClick, className, type = 'primary', disabled, label, size = 
             `}
             onClick={onClick} onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
             aria-disabled={disabled}>
+            {icon && (
+                <>
+                    {icon}
+                </>
+            )}
             {label}
         </div>
     )

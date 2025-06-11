@@ -40,6 +40,12 @@
   font-size: var(--font-size-xxl);
 }
 
+.errorMessage {
+  color: var(--color-red);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
 .ctaContent p {
   margin-bottom: 2rem;
   font-size: var(--font-size-lg);
@@ -55,7 +61,6 @@
   margin-bottom: 1rem;
   box-shadow: var(--shadow-soft);
 }
-
 
 .ctaForm small {
   color: var(--color-medium-gray);

@@ -9,28 +9,64 @@ import Input from '@/components/Input'
 import Button from '@/components/Button'
 import { useRouter } from 'next/navigation'
 import { useAppContext } from '@/context/AppContext'
+import { api } from '@/lib/axios'
 
-const HeroSection = () => {
+interface HeroSectionProps {
+    setIsLoading?: (loading: boolean) => void;
+}
+const HeroSection = ({ setIsLoading }: HeroSectionProps) => {
 
-    const { userCpf, setUserCpf, setUser } = useAppContext()
-
+    const { userCpf, setUserCpf, setUser, setDebtData } = useAppContext()
+    const [error, setError] = React.useState(false)
     const router = useRouter()
 
     async function searchClient(cpf: string) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clientes/${cpf}`)
-        const data = await res.json()
-        setUser(data)
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+            alert('Token não encontrado. Recarregue a página.')
+            return false
+        }
+
+        try {
+            const response = await api.post(
+                '/negociacao/sky/consulta',
+                { documento: cpf },
+                {
+                    headers: {
+                        'X-Token': token,
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_SECRET}`,
+                    },
+                }
+            )
+
+            setUser(response.data.nome)
+            setDebtData?.(response.data.titulos)
+
+            return true
+        } catch (error) {
+            console.error('Erro ao consultar cliente:', error)
+            return false
+        }
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (!userCpf || userCpf.length < 11) {
             alert('Por favor, insira um CPF válido.')
             return
         }
-        else {
+        setIsLoading?.(true)
+        const sucess = await searchClient(userCpf)
 
-            searchClient(userCpf)
-            router.push(`/minhas-dividas`)
+        if (sucess) {
+            setIsLoading?.(true)
+            router.push('/minhas-dividas')
+        }
+        else {
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+            }, 3000)
         }
     }
 
@@ -61,7 +97,13 @@ const HeroSection = () => {
                             <div className={S.formButton}>
                                 <Button type='primary' label='Consultar' className={S.button} size='large' onClick={handleClick} />
                             </div>
+
                         </div>
+                        {error && (
+                            <div className={S.errorMessage}>
+                                <p>CPF inválido ou não encontrado.</p>
+                            </div>
+                        )}
                         <small>Consulta gratuita e sem compromisso</small>
                     </motion.div>
                     <motion.div className={S.heroBadges} initial={{ opacity: 0, x: 50 }}

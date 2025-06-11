@@ -7,10 +7,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import { useAppContext } from '@/context/AppContext'
 const Header = () => {
 
     const [open, setOpen] = useState(false)
-
+    const { user } = useAppContext()
     const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -38,12 +39,11 @@ const Header = () => {
                 </motion.div>
 
                 <motion.nav className={S.menu}>
-                    <motion.div className={S.menuItem}>
-                        <Link href='/minhas-dividas'>Minhas Dividas</Link>
-                    </motion.div>
-                    <motion.div className={S.menuItem}>
-                        <Link href='/meus-acordos'>Meus Acordos</Link>
-                    </motion.div>
+                    {user && (
+                        <motion.div className={S.menuItem}>
+                            <Link href='/minhas-dividas'>Minhas Dividas</Link>
+                        </motion.div>
+                    )}
                     <motion.div className={S.menuItem}>
                         <Link href='/'>Contato</Link>
                     </motion.div>
@@ -94,9 +94,9 @@ const Header = () => {
                                     </motion.div>
                                 </div>
                                 <div className={S.menuMobileList}>
-                                    <h3>Olá Allan</h3>
-                                    <Link href='/minhas-dividas' onClick={() => setOpen(false)}>Minhas Dívidas</Link>
-                                    <Link href='/meus-acordos' onClick={() => setOpen(false)}>Meus Acordos</Link>
+                                    {user && (
+                                        <Link href='/minhas-dividas' onClick={() => setOpen(false)}>Minhas Dívidas</Link>
+                                    )}
                                     <Link href='/contato' onClick={() => setOpen(false)}>Contato</Link>
                                 </div>
                             </motion.div>

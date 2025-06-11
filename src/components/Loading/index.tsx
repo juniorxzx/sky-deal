@@ -7,62 +7,56 @@ import Img from '@/assets/images/loading-image.png'
 import S from './loading.module.css'
 
 interface LoadingProps {
-    stop?: boolean;
-
+    stop?: boolean
+    message?: string
 }
 
-const Loading = ({ stop }: LoadingProps) => {
-    const [progress, setProgress] = useState(0);
+const Loading = ({ stop = false, message }: LoadingProps) => {
+    const [progress, setProgress] = useState(0)
 
     useEffect(() => {
-        if (stop) {
-            const interval = setInterval(() => {
-                setProgress((prevProgress) => {
-                    if (prevProgress >= 100) {
-                        clearInterval(interval);
-                        return 100;
-                    }
-                    return prevProgress + 1;
-                });
-            }, 30);
-            return () => clearInterval(interval);
-        }
-        else {
-            const interval = setInterval(() => {
-                setProgress((prevProgress) => {
-                    if (prevProgress >= 90) {
-                        clearInterval(interval);
-                        return 90;
-                    }
-                    return prevProgress + 1;
-                });
-            }, 30);
-            return () => clearInterval(interval);
-        }
-    }, [stop]);
+        const target = stop ? 100 : 90
+
+        const interval = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= target) {
+                    clearInterval(interval)
+                    return target
+                }
+                return prev + 1
+            })
+        }, 30)
+
+        return () => clearInterval(interval)
+    }, [stop])
+
     return (
         <div className={S.container}>
             <div className={S.loadingContainer}>
-
                 <Image
-                    alt='Pessoa feliz pela proposta'
+                    alt="Pessoa feliz pela proposta"
                     src={Img}
                     height={200}
                     width={200}
                 />
-                <h1>Aguarde, estamos preparando sua oferta</h1>
+                <h1>{message || 'Aguarde, estamos preparando sua oferta'}</h1>
                 <div className={S.loading}>
                     <motion.div
                         className={S.loader}
-                        initial={{ width: "0%" }}
+                        initial={{ width: '0%' }}
                         animate={{
                             width: `${progress}%`,
-                            opacity: progress === 90 ? [0.7, 1, 0.7] : 1
+                            opacity:
+                                progress === 90
+                                    ? [0.6, 1, 0.6]
+                                    : 1
                         }}
                         transition={{
-                            duration: 0.3,
-                            ease: "linear",
-                            opacity: progress === 90 ? { repeat: Infinity, duration: 1.5 } : undefined
+                            duration: 0.4,
+                            ease: 'linear',
+                            ...(progress === 90
+                                ? { repeat: Infinity, repeatType: 'loop', duration: 1.5 }
+                                : {})
                         }}
                     />
                 </div>

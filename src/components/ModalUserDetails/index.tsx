@@ -6,20 +6,24 @@ import InputNumber from '../Input/InputNumber';
 import InputEmail from '../Input/InputEmail';
 
 
+
 interface ModalUserDetailsProps {
     setOpen: (open: boolean) => void;
-    onSubmit?: () => void;
     onIgnore?: () => void;
+    onSubmit?: () => void;
+    phone?: string;
+    email?: string;
+    setPhone?: (phone: string) => void;
+    setEmail?: (email: string) => void;
+    setIsFormValid?: (isValid: boolean) => void;
 }
-const ModalUserDetails = ({ setOpen, onSubmit, onIgnore }: ModalUserDetailsProps) => {
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
+const ModalUserDetails = ({ setOpen, onIgnore, onSubmit, phone, setPhone, email, setEmail, setIsFormValid }: ModalUserDetailsProps) => {
     const [isPhoneValid, setIsPhoneValid] = useState(false)
     const [isEmailValid, setIsEmailValid] = useState(false)
-
     const isFormValid = phone && email && isPhoneValid && isEmailValid
-
-
+    if (isFormValid) {
+        setIsFormValid?.(true)
+    }
     return (
         <div className={S.container}>
             <div className={S.modalContent}>

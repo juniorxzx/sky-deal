@@ -15,9 +15,11 @@ type AppContextType = {
     setUserCpf: (cpf: string | null) => void
     paymentMethod: PaymentMethod
     setPaymentMethod: (method: PaymentMethod) => void
-
+    debtData?: DebtData[],
+    setDebtData?: (data: DebtData[]) => void
     debtSelected?: DebtData
     setDebtSelected?: (debt: DebtData) => void
+    
 }
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
@@ -27,6 +29,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [userCpf, setUserCpf] = useState<string | null>(null)
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('boleto')
     const [debtSelected, setDebtSelected] = useState<DebtData>()
+    const [debtData, setDebtData] = useState<DebtData[]>([])
 
     const contextValue = {
         user,
@@ -37,7 +40,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         setUserCpf,
         paymentMethod,
         setPaymentMethod,
-        debtSelected, setDebtSelected
+        debtSelected, setDebtSelected,
+        debtData, setDebtData
     }
 
     return (

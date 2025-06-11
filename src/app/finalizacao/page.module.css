@@ -20,7 +20,7 @@
   color: var(--color-dark-gray);
 }
 
-.payment{
+.payment {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -44,6 +44,73 @@
   white-space: normal;
   overflow-wrap: break-word;
   padding: 0.5rem;
+}
+
+.bankSlipContainer {
+  max-height: 200px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.paymentDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-dark-gray);
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.codeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.codeContainer .info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--color-medium-gray);
+  border-radius: var(--radius-md);
+  width: 100%;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  padding: 0.5rem;
+}
+
+.actions {
+  margin-bottom: 24px;
+}
+
+.digitableContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.digitableLabel {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--color-medium-gray);
+  background: #f9fafb;
+  transition: border-color 0.2s ease;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  outline: none;
 }
 
 @media (min-width: 768px) {

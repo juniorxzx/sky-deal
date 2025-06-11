@@ -1,0 +1,186 @@
+.bankSlip {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: var(--color-white);
+  color: var(--color-dark-gray);
+  line-height: 1.4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bankSlipHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.logoSection {
+  flex: 1;
+}
+
+.clientGreeting {
+  font-size: var(--font-size-md);
+  margin-bottom: 40px;
+  color: var(--color-dark-gray);
+}
+
+.amountSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 30px;
+}
+
+.amountInfo,
+.dueInfo {
+  flex: 1;
+}
+
+.amountLabel,
+.dueLabel {
+  font-size: var(--font-size-md);
+  color: var(--color-red);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.amountValue,
+.dueValue {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-red);
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background: #ddd;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: var(--color-dark-gray);
+  margin: 30px 0;
+}
+
+.mainContent {
+  margin-bottom: 40px;
+}
+
+.easySection {
+  margin-bottom: 30px;
+}
+
+.easyTitle {
+  font-size: var(--font-size-xxl);
+  font-weight: bold;
+  color: var(--color-red);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.instructionsGrid {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.instructionItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.instructionItem svg {
+  color: var(--color-red);
+}
+
+.instructionText {
+  font-size: var(--font-size-lg);
+  color: var(--color-dark-gray);
+  line-height: 1.5;
+}
+
+.footerInfo {
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+}
+
+.protectionNotice {
+  margin-bottom: 20px;
+  color: var(--color-dark-gray);
+}
+
+.paymentDeadline {
+  margin-bottom: var(--space-md);
+  color: var(--color-dark-gray);
+  font-size: var(--font-size-md);
+}
+
+.paymentMethods {
+  margin-bottom: var(--space-md);
+  color: var(--color-dark-gray);
+}
+
+.contactInfo {
+  margin-bottom: 30px;
+  color: var(--color-dark-gray);
+}
+
+.bottomSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.paymentNotice {
+  flex: 1;
+  width: 100%;
+}
+
+.paymentNotice p {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  color: var(--color-medium-gray);
+}
+
+.serviceNotice {
+  font-size: 11px !important;
+  color: var(--color-medium-gray) !important;
+}
+
+.barcodeSection {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.barcodeLabel {
+  width: 100%;
+}
+
+.serviceLabel {
+  font-size: 10px;
+  color: var(--color-medium-gray);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skyLogo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-red);
+  font-style: italic;
+  transform: skew(-10deg);
+}
+
+

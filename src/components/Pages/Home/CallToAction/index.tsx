@@ -7,32 +7,62 @@ import Input from '@/components/Input'
 import Button from '@/components/Button'
 import { useAppContext } from '@/context/AppContext'
 import { useRouter } from 'next/navigation'
+import { api } from '@/lib/axios'
 
 
 const CallToAction = () => {
-    const { setUserCpf, userCpf, setUser } = useAppContext()
-
-
+    const { userCpf, setUserCpf, setUser, setDebtData } = useAppContext()
+    const [error, setError] = React.useState(false)
     const router = useRouter()
 
     async function searchClient(cpf: string) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clientes/${cpf}`)
-        const data = await res.json()
-        setUser(data)
+        const token = localStorage.getItem('token')
+
+        if (!token) {
+            alert('Token não encontrado. Recarregue a página.')
+            return false
+        }
+
+        try {
+            const response = await api.post(
+                '/negociacao/sky/consulta',
+                { documento: cpf },
+                {
+                    headers: {
+                        'X-Token': token,
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_SECRET}`,
+                    },
+                }
+            )
+
+            setUser(response.data.nome)
+            setDebtData?.(response.data.titulos)
+
+            return true
+        } catch (error) {
+            console.error('Erro ao consultar cliente:', error)
+            return false
+        }
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (!userCpf || userCpf.length < 11) {
             alert('Por favor, insira um CPF válido.')
             return
         }
-        else {
 
-            searchClient(userCpf)
-            router.push(`/minhas-dividas`)
+        const sucess = await searchClient(userCpf)
+
+        if (sucess) {
+            router.push('/minhas-dividas')
+        }
+        else {
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+            }, 3000)
         }
     }
-
     return (
         <section className={S.cta}>
             <div className={S.container}>
@@ -48,6 +78,11 @@ const CallToAction = () => {
                                 <Button type='primary' label='Consultar' className={S.button} size='large' onClick={handleClick} />
                             </div>
                         </div>
+                        {error && (
+                            <div className={S.errorMessage}>
+                                <p>CPF inválido ou não encontrado.</p>
+                            </div>
+                        )}
                         <small>Consulta gratuita e sem compromisso</small>
                     </motion.div>
                 </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import S from './page.module.css'
 import Button from '@/components/Button'
 import { useAppContext } from '@/context/AppContext'
@@ -9,24 +9,125 @@ import { IoBarcodeOutline } from 'react-icons/io5'
 import ModalUserDetails from '@/components/ModalUserDetails'
 import { useRouter } from 'next/navigation'
 import { BiCalendar, BiCreditCard } from 'react-icons/bi'
+import Loading from '@/components/Loading'
+import { api } from '@/lib/axios'
+import Popup from '@/components/PopUp'
 
 const ConfirmationPage = () => {
     const [accepted, setAccepted] = useState(false)
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const { selectedDate, setPaymentMethod, paymentMethod, debtSelected } = useAppContext()
+    const { userCpf, selectedDate, setPaymentMethod, paymentMethod, debtSelected, user } = useAppContext()
+    const [isLoading, setIsLoading] = useState(false)
+    const [phone, setPhone] = useState<string | ''>()
+    const [email, setEmail] = useState<string | ''>()
+    const [isFormValid, setIsFormValid] = useState(false)
+    const [error, setError] = useState(false)
+
+    useEffect(() => {
+        if (!user) {
+            router.push('/')
+        }
+    }, [])
 
     const handleNext = () => {
         if (accepted) {
             setOpen(true)
         }
     }
-    const handleSubmit = () => {
 
-        setOpen(false);
-        router.push('/finalizacao');
+
+    const handleSubmit = async () => {
+        const token = localStorage.getItem('token')
+
+        if (!isFormValid) return
+
+        if (!token) {
+            alert('Token não encontrado. Recarregue a página.')
+            return
+        }
+        setIsLoading(true)
+
+        try {
+            await api.put(
+                '/negociacao/sky/atualiza-contato',
+                {
+                    documento: userCpf,
+                    telefone: phone,
+                    email: email,
+                },
+                {
+                    headers: {
+                        'X-Token': token,
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_SECRET}`,
+                    },
+                }
+            )
+
+            await api.post('/negociacao/sky/acordo', {
+                documento: userCpf,
+                titulo: debtSelected?.titulo,
+            }, {
+                headers: {
+                    'X-Token': token,
+                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_SECRET}`,
+                },
+            })
+
+            setOpen(false)
+            router.push('/finalizacao')
+        } catch (error) {
+            console.error('Erro ao consultar cliente:', error)
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+                router.push('/')
+            }, 5000)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const handleIgnore = async () => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            alert('Token não encontrado. Recarregue a página.')
+            return
+        }
+        setIsLoading(true)
+
+        try {
+
+            await api.post('/negociacao/sky/acordo', {
+                documento: userCpf,
+                titulo: debtSelected?.titulo,
+            }, {
+                headers: {
+                    'X-Token': token,
+                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_SECRET}`,
+                },
+            })
+
+            setOpen(false)
+            router.push('/finalizacao')
+        } catch (error) {
+            console.error('Erro ao consultar cliente:', error)
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+                router.push('/')
+            }, 5000)
+        } finally {
+            setIsLoading(false)
+        }
 
     }
+    if (isLoading) {
+        return (
+            <Loading message='Estamos confimando uns dados, aguarde' />
+        )
+    }
+
     return (
         <main className={S.container}>
             <motion.div
@@ -35,7 +136,7 @@ const ConfirmationPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}>
                 <div className={S.details}>
-                    <p>{debtSelected?.contrato}</p>
+                    <p>{debtSelected?.titulo}</p>
                     <h3>Negociação referente a quitação total do contrato</h3>
                     <div className={S.detailsInfo}>
                         <h1>{debtSelected?.descricao}</h1>
@@ -52,7 +153,7 @@ const ConfirmationPage = () => {
                         </div>
                     )} */}
                         <div className={S.currentValue}>
-                            {debtSelected?.fValor}
+                            {debtSelected?.fvalor}
                         </div>
                     </div>
                 </div>
@@ -160,11 +261,22 @@ const ConfirmationPage = () => {
             </motion.div>
             <AnimatePresence>
                 {open && (
-                    <ModalUserDetails setOpen={setOpen} onIgnore={handleSubmit} onSubmit={handleSubmit} />
+                    <ModalUserDetails
+                        setOpen={setOpen}
+                        onIgnore={handleIgnore}
+                        onSubmit={handleSubmit}
+                        email={email}
+                        setEmail={setEmail}
+                        phone={phone}
+                        setPhone={setPhone}
+                        setIsFormValid={setIsFormValid}
+                    />
                 )}
             </AnimatePresence>
 
-
+            {error && (
+                <Popup msg='Tivemos um erro ao confirmar seu contrato' type='error' />
+            )}
         </main>
     )
 }

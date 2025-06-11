@@ -10,22 +10,28 @@ import { DebtData } from '@/@types/debt.type';
 interface CardMyDebtsProps {
     setOpen: (open: boolean) => void;
     debt: DebtData;
+    setOpenPayment: (open: boolean) => void;
     setSelectedDebt?: (debt: DebtData) => void;
 }
 
-const CardMyDebts = ({ setOpen, debt, setSelectedDebt }: CardMyDebtsProps) => {
-
+const CardMyDebts = ({ setOpen, debt, setSelectedDebt, setOpenPayment }: CardMyDebtsProps) => {
 
     const handlePay = () => {
         if (!setSelectedDebt) return;
         setSelectedDebt(debt);
         setOpen(true);
     }
+    const handleSecond = () => {
+        if (!setSelectedDebt) return;
+        setSelectedDebt(debt);
+        setOpenPayment(true);
+    }
+
     return (
         <div className={S.card}>
             <div className={S.cardHeader}>
                 <h1>{debt?.descricao}</h1>
-                <span>{debt?.contrato}</span>
+                <span>{debt?.titulo}</span>
             </div>
             <div className={S.cardValue}>
                 <div className={S.values}>
@@ -37,7 +43,7 @@ const CardMyDebts = ({ setOpen, debt, setSelectedDebt }: CardMyDebtsProps) => {
                         </div>
                     )} */}
                     <div className={S.currentValue}>
-                        {debt.fValor}
+                        {debt.fvalor}
                     </div>
                 </div>
             </div>
@@ -49,7 +55,7 @@ const CardMyDebts = ({ setOpen, debt, setSelectedDebt }: CardMyDebtsProps) => {
                         <span>Vencimento Original</span>
                     </div>
                     <div className={S.dateValue}>
-                        {debt.vencimentoOriginal}
+                        {debt.vencimento_original}
                     </div>
                 </div>
 
@@ -76,12 +82,11 @@ const CardMyDebts = ({ setOpen, debt, setSelectedDebt }: CardMyDebtsProps) => {
 
             <div className={S.cardButtons}>
 
-                {debt.segundaVia ? (
-                    <Button label='Segunda Via' type='secondary' size='large' />
+                {debt.segundavia ? (
+                    <Button label='Segunda Via' type='secondary' size='large' onClick={handleSecond} />
                 ) : (
                     <Button label='Pagar à vista' onClick={handlePay} size='large' />
                 )}
-                {/* <Button label='Simular parcelamento' type='secondary' /> */}
             </div>
         </div>
     )

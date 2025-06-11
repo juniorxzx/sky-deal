@@ -3,8 +3,8 @@ export type DebtData = {
   contrato: string;
   descricao: string;
   valor: string;
-  fValor: string;
-  vencimentoOriginal: string;
+  fvalor: string;
+  vencimento_original: string;
   status: number;
-  segundaVia: boolean;
+  segundavia: boolean;
 };

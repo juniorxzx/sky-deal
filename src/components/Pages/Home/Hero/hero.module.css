@@ -178,7 +178,13 @@
     width: 100%;
   }
 
-  .herp .heroImage {
+  .errorMessage {
+    color: var(--color-red);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero .heroImage {
     width: 100%;
     height: 100%;
     display: flex;
