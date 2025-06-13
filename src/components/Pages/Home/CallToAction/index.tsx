@@ -73,14 +73,14 @@ const CallToAction = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}>
                         <div className={S.formGroup}>
-                            <Input label='Digite seu CPF para consultar' mask='cpf' value={userCpf ?? ''} onChange={setUserCpf} />
+                            <Input label='Digite seu CPF ou CNPJ para consultar' mask='cpf' value={userCpf ?? ''} onChange={setUserCpf} />
                             <div className={S.formButton}>
                                 <Button type='primary' label='Consultar' className={S.button} size='large' onClick={handleClick} />
                             </div>
                         </div>
                         {error && (
                             <div className={S.errorMessage}>
-                                <p>CPF inválido ou não encontrado.</p>
+                                <p>CPF/CNPJ inválido ou não encontrado.</p>
                             </div>
                         )}
                         <small>Consulta gratuita e sem compromisso</small>
