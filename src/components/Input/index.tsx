@@ -16,23 +16,30 @@ interface InputProps {
 const Input = ({ id, label, placeholder, type, value, onChange }: InputProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [focused, setFocused] = useState(false)
+    
+    const formatCpfOrCnpj = (value: string) => {
+        const digits = value.replace(/\D/g, '').slice(0, 14)
 
-    const formatCpf = (value: string) => {
-        const digits = value.replace(/\D/g, '').slice(0, 11)
+        if (digits.length <= 11) {
+            return digits
+                .replace(/^(\d{3})(\d)/, '$1.$2')
+                .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+                .replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4')
+        }
 
         return digits
-            .replace(/^(\d{3})(\d)/, '$1.$2')
-            .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
-            .replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4')
+            .replace(/^(\d{2})(\d)/, '$1.$2')
+            .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+            .replace(/^(\d{2})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3/$4')
+            .replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, '$1.$2.$3/$4-$5')
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const masked = formatCpf(e.target.value)
+        const masked = formatCpfOrCnpj(e.target.value)
         if (onChange) {
             onChange(masked)
         }
     }
-
 
     return (
         <div className={S.inputContainer}>
@@ -51,7 +58,7 @@ const Input = ({ id, label, placeholder, type, value, onChange }: InputProps) =>
                     type={type} id={id} placeholder={placeholder} value={value}
                     onChange={handleChange}
                 />
-    
+
             </div>
         </div>
     )
